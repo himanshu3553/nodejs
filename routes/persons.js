@@ -1,14 +1,16 @@
+const admin = require('../middleware/admin');
+const auth = require('../middleware/auth');
 const { Person, validate } = require('../models/person');
 const mongoose = require('mongoose');
 const express = require('express');
 const router = express.Router();
 
-router.get('/', async (req, res) => {
+router.get('/', auth, async (req, res) => {
   const people = await Person.find().sort('name');
   res.send(people);
 });
 
-router.post('/', async (req, res) => {
+router.post('/', auth, async (req, res) => {
   const { error } = validate(req.body);
   if (error) return res.status(400).send(error.details[0].message);
 
@@ -16,6 +18,14 @@ router.post('/', async (req, res) => {
   person = await person.save();
 
   res.send(person);
+});
+
+router.delete('/:id', [auth, admin], async (req, res) => {
+  const genre = await Genre.findByIdAndRemove(req.params.id);
+
+  if (!genre) return res.status(404).send('The genre with the given ID was not found.');
+
+  res.send(genre);
 });
 
 module.exports = router;
