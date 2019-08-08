@@ -8,7 +8,7 @@
     "build": "babel src/index.js -d dist",
     "format": "npm run build && prettier-eslint --write dist/index.js",
     "lint": "npm run format && eslint dist/index.js",
-    "start": "npm run lint && nodemon dist/index.js"
+    "start": "npm run lint && node dist/index.js"
   },
   "keywords": [],
   "author": "",

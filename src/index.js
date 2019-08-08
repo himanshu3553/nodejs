@@ -7,8 +7,6 @@ const app = express();
 mongoose.connect('mongodb://localhost/auth')
     .then(() => {
         console.log('Connected to Mongodb...');
-    }).catch(err => {
-        console.log('Error in connecting with mongodb...', err);
     });
 
 app.use(express.json());
