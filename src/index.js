@@ -15,7 +15,7 @@ app.listen(port, () => console.log(`Listening on port ${port}...`));
 // }));
 
 // Database connection
-mongoose.connect('mongodb://localhost/playground')
+mongoose.connect('mongodb://localhost/wm')
     .then(() => {
         console.log('Connected to Mongodb...');
     }).catch(err => {
@@ -52,6 +52,6 @@ async function getPersons() {
 }
 
 // createPerson();
-getPersons();
+// getPersons();
 
 
